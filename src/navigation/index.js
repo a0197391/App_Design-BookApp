@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from "react";
+// import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pressable } from "native-base";
-
+import { Text, TouchableOpacity } from "react-native";
 
 
 import AlbumScreen from '../screens/AlbumScreen';
@@ -79,7 +80,14 @@ const MyTabs = () => {
   );
 }
 
+
 const HomeStack = () => {
+  
+  const [like, setlike] = useState(true);
+  const likeFunction = () => {
+      setlike(!like);
+  };
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -123,16 +131,14 @@ const HomeStack = () => {
            </Pressable>
         ),
         headerRight: () => (
-          <Pressable>
-          <MaterialCommunityIcons 
-          name={'chevron-left'} 
-          color={'black'} 
-          size={30}
-          onPress={ () => {navigation.goBack();}}
-        />
-         </Pressable>
+            <TouchableOpacity onPress={() => likeFunction()}>
+                        <Text>{like ? <MaterialCommunityIcons name={'bookmark-outline'} color={'black'} size={25} />:
+                                        <MaterialCommunityIcons name={'bookmark'} color={'#6200EE'} size={25} />}
+                        </Text>
+                    </TouchableOpacity>
+          
      ),
-
+     headerShadowVisible: false
         })}
       />
     </Stack.Navigator>
