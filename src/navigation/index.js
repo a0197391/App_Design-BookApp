@@ -98,11 +98,31 @@ const HomeStack = () => {
         name="Home"
         component={AlbumScreen}
         options={{
-          title:albumData.albumTitle,
+          title:" ",
           headerTitleStyle: {
             fontWeight: '400',
             fontSize: 20,
           },
+          headerLeft: () => (
+            <Pressable>
+            <MaterialCommunityIcons 
+            name={'menu'} 
+            color={'black'} 
+            size={30}
+          />
+           </Pressable>
+        ),
+        headerRight: () => (
+          <Pressable>
+          <MaterialCommunityIcons 
+          name={'magnify'} 
+          color={'black'} 
+          size={30}
+          onPress={ () => {alert("Search")}} 
+        />
+         </Pressable>
+          
+     ),
         }}
       />
       <Stack.Screen
