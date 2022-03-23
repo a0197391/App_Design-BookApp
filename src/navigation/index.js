@@ -54,7 +54,8 @@ const MyTabs = () => {
           title: "Wishlist",
           headerTitleStyle: {
             fontWeight: '400',
-            fontSize: 30
+            fontSize: 30,
+            color:'#734338',
           },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="bookmark" color={color} size={30} />
@@ -69,7 +70,8 @@ const MyTabs = () => {
           title: "MyBooks",
           headerTitleStyle: {
             fontWeight: '400',
-            fontSize: 30
+            fontSize: 30,
+            color: '#3A8FB7',
           },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="book-open" color={color} size={30} />
