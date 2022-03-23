@@ -2,8 +2,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Pressable } from "native-base";
+
+
 
 import AlbumScreen from '../screens/AlbumScreen';
 import DetailScreen from '../screens/DetailScreen';
@@ -30,7 +32,7 @@ const MyTabs = () => {
       initialRouteName="HomeStack"
       screenOptions={{
         tabBarActiveTintColor: '#6200EE',
-        // headerShown: false
+        //  headerShown: false
       }}
     >
       <Tab.Screen 
@@ -80,38 +82,63 @@ const MyTabs = () => {
 const HomeStack = () => {
   return (
     <Stack.Navigator
-      // screenOptions={{
-      //   headerShown: false
-      // }}
+      screenOptions={{
+        // headerShown: false
+      }}
     >
       <Stack.Screen
         name="Home"
         component={AlbumScreen}
         options={{
-          title: albumData.albumTitle,
+          title:albumData.albumTitle,
           headerTitleStyle: {
             fontWeight: '400',
-            fontSize: 20
+            fontSize: 20,
           },
         }}
       />
       <Stack.Screen
         name="Detail"
         component={DetailScreen}
-        options={({ route }) => ({
-          title: route.params.title,
+        options={({navigation, route }) => ({
+          // title: route.params.title,
           headerStyle: {
             backgroundColor: '#fff',
           },
           headerTintColor: '#000',
           headerTitleStyle: {
             fontWeight: '400',
-            fontSize: 20
+            fontSize: 20,
+            color:"#fff",
           },
+
+          headerLeft: () => (
+            <Pressable>
+            <MaterialCommunityIcons 
+            name={'chevron-left'} 
+            color={'black'} 
+            size={30}
+            onPress={ () => {navigation.goBack();}}
+          />
+           </Pressable>
+        ),
+        headerRight: () => (
+          <Pressable>
+          <MaterialCommunityIcons 
+          name={'chevron-left'} 
+          color={'black'} 
+          size={30}
+          onPress={ () => {navigation.goBack();}}
+        />
+         </Pressable>
+     ),
+
         })}
       />
     </Stack.Navigator>
   );
 }
+
+
 
 export default Navigation;
